@@ -1,0 +1,16 @@
+{
+    "name": "cities-list",
+    "version": "1.0.0",
+    "description": "Cities listing api",
+    "main": "app.js",
+    "scripts": {
+        "test": "mocha tests/unit/"
+    },
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^6.0.1"
+    },
+    "dependencies": {
+        "all-the-cities": "^2.0.1"
+    }
+}

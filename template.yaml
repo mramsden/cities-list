@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  cities-list
+
+  Shows a list of cities from around the World
+
+Globals:
+  Function:
+    Timeout: 3
+    Tags:
+      Project: cities-list
+
+Resources:
+  CitiesListFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: cities-list/
+      Handler: app.lambdaHandler
+      Runtime: nodejs8.10
+      Events:
+        CitiesList:
+          Type: Api
+          Properties:
+            Path: /cities
+            Method: get
+
+Outputs:
+  CitiesListApi:
+    Description: "API Gateway endpoint URL for Prod stage for Cities List function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/cities/"
+
+  CitiesListFunction:
+    Description: "Cities List Lambda Function ARN"
+    Value: !GetAtt CitiesListFunction.Arn
+
+  CitiesListFunctionIamRole:
+    Description: "Implicit IAM Role created for Cities List function"
+    Value: !GetAtt CitiesListFunction.Arn
